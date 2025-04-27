@@ -1,4 +1,4 @@
-module github.com/karkar/koko
+module github.com/karkar0813/koko
 
 go 1.22.0
 
