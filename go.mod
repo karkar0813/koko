@@ -1,4 +1,4 @@
-module github.com/redhat-nfvpe/koko
+module github.com/karkar/koko
 
 go 1.22.0
 
