@@ -620,12 +620,15 @@ func MakeVeth(veth1 VEth, veth2 VEth) error {
 
 	if err = veth1.SetVethLink(link1); err != nil {
 		netlink.LinkDel(link1)
+		netlink.LinkDel(link2)
 		return err
 	}
 	if err = veth2.SetVethLink(link2); err != nil {
+		netlink.LinkDel(link1)
 		netlink.LinkDel(link2)
+		return err
 	}
-	return err
+	return nil
 }
 
 // MakeVxLan makes vxlan interface and put it into container namespace
@@ -789,7 +792,6 @@ func IsExistLinkInNS(nsName string, linkName string) (result bool, err error) {
 		if link != nil {
 			result = true
 		}
-		result = false
 		return err
 	})
 
